@@ -1,9 +1,10 @@
 pipeline{
-	agent none
+	agent any
 	environment{
-	DOCKER_HUB_REPO = "vijaya81kp/capstone"
+	DOCKER_HUB_REPO = "vijaya81kp/flask-cicd"
 	REGISTRY_CREDENTIAL = "dockerhub"
-        CONTAINER_NAME = "flask-container-cicd"
+        CONTAINER_NAME = "flask-container"
+		dockerImage = ''
 	}
 	stages{
 		stage('Clean'){
@@ -22,7 +23,7 @@ pipeline{
 				}
 			}
 		}
-		stage('Build') {
+		stage('Build Image') {
             steps {
 				script {
 						//  Building new image
