@@ -43,7 +43,7 @@ pipeline{
 		stage('Ansible Deployment via Playbook'){
 			steps{
 				script{
-					ansiblePlaybook become: true, installation: 'ansible', inventory: 'hosts', playbook: 'ansible.yaml'
+					sh 'ansible-playbook ansible.yaml -l target -u kubernetes'
 				}
 			}
 		}
