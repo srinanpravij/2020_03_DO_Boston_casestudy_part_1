@@ -9,7 +9,7 @@ pipeline{
         //ANS_HOME = tool('ansible')
 	}
 	tools{
-		ansible 'ansible'
+		ansible
 	}
 	stages{
 		stage('Clean'){
