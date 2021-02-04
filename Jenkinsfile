@@ -8,9 +8,7 @@ pipeline{
 		//PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
         //ANS_HOME = tool('ansible')
 	}
-	tools{
-		ansible
-	}
+	
 	stages{
 		stage('Clean'){
 			steps{
