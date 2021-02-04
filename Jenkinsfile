@@ -5,8 +5,8 @@ pipeline{
 	REGISTRY_CREDENTIAL = "dockerhub"
         CONTAINER_NAME = "flask-container"
 		dockerImage = ''
-		PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
-        ANS_HOME = tool('ansible')
+		//PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
+        //ANS_HOME = tool('ansible')
 	}
 	stages{
 		stage('Clean'){
@@ -48,8 +48,7 @@ pipeline{
 					sh 'echo Inside Ansible stage'
 					sh 'pwd'
 					sh 'env'
-					sh 'awk'
-					sh '/usr/bin/ansible-playbook ansible.yaml -l target -u kubernetes'
+					sh 'ansible-playbook ansible.yaml -l target -u kubernetes'
 				}
 			}
 		}
