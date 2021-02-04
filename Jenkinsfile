@@ -48,6 +48,7 @@ pipeline{
 					sh 'echo Inside Ansible stage'
 					sh 'pwd'
 					sh 'env'
+					sh '/usr/bin/ansible'
 					sh '/usr/bin/ansible-playbook ansible.yaml -l target -u kubernetes'
 				}
 			}
