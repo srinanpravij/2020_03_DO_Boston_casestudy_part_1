@@ -8,6 +8,9 @@ pipeline{
 		//PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
         //ANS_HOME = tool('ansible')
 	}
+	tools{
+		ansible 'ansible'
+	}
 	stages{
 		stage('Clean'){
 			steps{
@@ -48,7 +51,8 @@ pipeline{
 					sh 'echo Inside Ansible stage'
 					sh 'pwd'
 					sh 'env'
-					sh '/usr/bin/ansible-playbook ansible.yaml -l target -u kubernetes'
+					sh 'ansible --version'
+					sh 'ansible-playbook ansible.yaml -l target -u kubernetes'
 				}
 			}
 		}
