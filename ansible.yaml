@@ -9,3 +9,19 @@
     command: kubectl delete -f /root/deployment.yaml
   - name: create a deployment by reading the new deployment file
     command: kubectl apply -f /root/deployment.yaml
+  - name: view a deployment
+    command: kubectl get deployment cicd-flaskapp-deployment
+  - name: expose the deployment
+    command: kubectl get service cicd-flaskapp-service
+  - name: list the pods
+    command: kubectl get pods
+  - name: List the services
+    command: kubectl get services
+  - name: launch the service
+    command: minikube service cicd-flaskapp-service
+  - name: Detailed pods information
+    command: kubectl describe pods
+  - name: scale the replicas
+    command: kubectl scale --replicas=5 -f deployment.yaml
+  - name: view the replicas
+    command: kubectl get pods -A -owide
