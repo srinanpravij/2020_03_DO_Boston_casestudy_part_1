@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flaskapp
-        image: vijaya81kp/flask-cicd:1
+        image: vijaya81kp/flask-cicd
         ports:
         - containerPort: 9000
 ---
