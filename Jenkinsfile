@@ -5,8 +5,8 @@ pipeline{
 	REGISTRY_CREDENTIAL = "dockerhub"
         CONTAINER_NAME = "flask-container"
 		dockerImage = ''
-		PATH = "/usr/bin/docker:$PATH"
-		//PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
+		PATH = "/var/lib/jenkins/workspace/capstone/2020_03_DO_Boston_casestudy_part_1:/usr/bin/docker:$PATH"
+		//PATH = "/home/ubuntu/2020_03_DO_Boston_casestudy_part_1:/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
         //ANS_HOME = tool('ansible')
 	}
 	
@@ -14,7 +14,7 @@ pipeline{
 		stage('Clean'){
 			steps{
 				script{
-					sh 'rm -rf $PWD/capstonepd'
+					sh 'rm -rf 2020_03_DO_Boston_casestudy_part_1'
 					echo 'inside project clean'
 				}
 			}
@@ -22,32 +22,30 @@ pipeline{
 		stage('SVM-Checkout'){
 			steps{
 				script{
-					sh 'git clone https://github.com/srinanpravij/2020_03_DO_Boston_casestudy_part_1.git $PWD/capstonepd'
+					sh 'git clone https://github.com/srinanpravij/2020_03_DO_Boston_casestudy_part_1.git'
 					sh 'ls'
 				}
 			}
 		}
-		//stage('Build Image') {
+		stage('Build Image') {
             steps {
 				script {
 						sh 'env'
+						sh 'pwd'
 						//  Building new image
-					sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
-					sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
-
+						//sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
+						sh 'docker image build . -f ./2020_03_DO_Boston_casestudy_part_1/Dockerfile -t vijaya81kp/flask-cicd:latest'
+						sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
 					//  Pushing Image to Repository
-					docker.withRegistry( '', REGISTRY_CREDENTIAL ) {
-					sh 'docker push vijaya81kp/flask-cicd:$BUILD_NUMBER'
-					sh 'docker push vijaya81kp/flask-cicd:latest'
+						docker.withRegistry( '', REGISTRY_CREDENTIAL ) {
+						sh 'docker push vijaya81kp/flask-cicd:$BUILD_NUMBER'
+						sh 'docker push vijaya81kp/flask-cicd:latest'
 					}
-                
+					
                 	echo "Image built and pushed to repository"
 				}
 			}
         }
-		
-		
-	
 	}
 
 }
