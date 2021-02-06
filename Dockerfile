@@ -3,5 +3,5 @@ RUN mkdir /flask_cicd
 WORKDIR /flask_cicd
 ADD . /flask_cicd
 RUN pip install -r requirements.txt
-EXPOSE 8080
+EXPOSE 9000
 CMD ["python","web.py"]

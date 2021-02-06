@@ -5,6 +5,7 @@ pipeline{
 	REGISTRY_CREDENTIAL = "dockerhub"
         CONTAINER_NAME = "flask-container"
 		dockerImage = ''
+		PATH = "/usr/bin/docker:$PATH"
 		//PATH = "/usr/bin/ansible:/usr/bin/ansible-playbook:$PATH"
         //ANS_HOME = tool('ansible')
 	}
@@ -26,9 +27,10 @@ pipeline{
 				}
 			}
 		}
-		stage('Build Image') {
+		//stage('Build Image') {
             steps {
 				script {
+						sh 'env'
 						//  Building new image
 					sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
 					sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
@@ -43,17 +45,7 @@ pipeline{
 				}
 			}
         }
-		stage('Ansible Deployment via Playbook'){
-			steps{
-				script{
-					sh 'echo Inside Ansible stage'
-					sh 'pwd'
-					sh 'env'
-					sh 'ansible --version'
-					sh 'ansible-playbook ansible.yaml -l target -u kubernetes'
-				}
-			}
-		}
+		
 		
 	
 	}
