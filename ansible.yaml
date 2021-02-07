@@ -4,7 +4,7 @@
   - name: copy deployment file to kubernetes cluster
     copy:
       src: deployment.yaml
-      dest: /root/
+      dest: /home/ubuntu-worker/deploy/
   - name: delete the previous kubernetes objects
     shell: kubectl delete -f /root/deployment.yaml
   - name: create a deployment by reading the new deployment file
