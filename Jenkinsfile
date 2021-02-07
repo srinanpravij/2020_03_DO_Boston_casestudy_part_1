@@ -46,6 +46,14 @@ pipeline{
 				}
 			}
         }
+		stage('Deploy-Playbook'){
+			steps{
+				script{
+					sh 'ansible-playbook -f ./2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
+				}
+				//ansiblePlaybook become: true, credentialsId: 'ubuntu-worker', disableHostKeyChecking: true, installation: 'ansible', playbook: './2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
+			}
+		}
 	}
 
 }
