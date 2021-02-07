@@ -6,7 +6,7 @@
       src: deployment.yaml
       dest: /home/ubuntu-worker/deploy/
   - name: delete the previous kubernetes objects
-    shell: kubectl delete -f /root/deployment.yaml
+    shell: kubectl delete -f /home/ubuntu-worker/deploy/deployment.yaml
   - name: create a deployment by reading the new deployment file
-    shell: kubectl apply -f /root/deployment.yaml
+    shell: kubectl apply -f /home/ubuntu-worker/deploy/deployment.yaml
   
