@@ -46,14 +46,15 @@ pipeline{
 				}
 			}
         }
-		stage('Deploy-Playbook'){
+       stage('Deploy-Playbook'){
 			steps{
-				script{
-					sh 'ansible-playbook -f ./2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
-				}
-				//ansiblePlaybook become: true, credentialsId: 'ubuntu-worker', disableHostKeyChecking: true, installation: 'ansible', playbook: './2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
+				//script{
+				//	sh 'ansible-playbook -u ubuntu-worker ./2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
+			//	}
+			    ansiblePlaybook credentialsId: 'capstone', disableHostKeyChecking: true, installation: 'ansible', playbook: './2020_03_DO_Boston_casestudy_part_1/ansible.yaml'
+			//	ansiblePlaybook become: true, credentialsId: '84db75ff-7a51-42f7-8c20-cecb435333ac', disableHostKeyChecking: true, installation: 'ansible', playbook: 'ansible.yaml'
 			}
-		}
+       }
 	}
 
 }
